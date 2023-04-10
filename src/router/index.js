@@ -79,14 +79,14 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'home',
-        meta: { title: '主页', icon: 'home', affix: true }
+        meta: { title: '主页', icon: 'home', affix: true, type:'work' }
       }
     ]
   },
   {
     path: '/mydashboard',
     component: () => import('@/views/mydashboard/index'),
-    name: 'mydashboard',
+    name: 'mydashboard'
   },
   {
     path: '/datasource',
@@ -106,7 +106,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: '收藏夹', icon: 'documentation', affix: true }
+        meta: { title: '收藏夹', icon: 'documentation', affix: true, type:'work' }
       }
     ]
   },
@@ -119,7 +119,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: '最近', icon: 'guide', noCache: true }
+        meta: { title: '最近', icon: 'guide', noCache: true , type:'work'}
       }
     ]
   },
@@ -131,7 +131,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'share',
-        meta: { title: '我的分享', icon: 'user', noCache: true }
+        meta: { title: '我的分享', icon: 'user', noCache: true, type:'work' }
       }
     ]
   },
@@ -143,7 +143,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'report',
-        meta: { title: '报表制作', icon: 'user', noCache: true }
+        meta: { title: '报表制作', icon: 'user', noCache: true, type:'work' }
       }
     ]
   },
@@ -155,7 +155,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'user',
-        meta: { title: '用户', icon: 'user', noCache: true }
+        meta: { title: '用户', icon: 'user', noCache: true, type:'work' }
       }
     ]
   },
@@ -167,7 +167,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'group',
-        meta: { title: '群组', icon: 'user', noCache: true }
+        meta: { title: '群组', icon: 'user', noCache: true, type:'work' }
       }
     ]
   }
@@ -310,19 +310,6 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/error-log',
-    component: Layout,
-    children: [
-      {
-        path: 'log',
-        component: () => import('@/views/error-log/index'),
-        name: 'ErrorLog',
-        meta: { title: 'Error Log', icon: 'bug' }
-      }
-    ]
-  },
-
-  {
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
@@ -372,62 +359,6 @@ export const asyncRoutes = [
         component: () => import('@/views/zip/index'),
         name: 'ExportZip',
         meta: { title: 'Export Zip' }
-      }
-    ]
-  },
-
-  {
-    path: '/pdf',
-    component: Layout,
-    redirect: '/pdf/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
-      }
-    ]
-  },
-  {
-    path: '/pdf/download',
-    component: () => import('@/views/pdf/download'),
-    hidden: true
-  },
-
-  {
-    path: '/theme',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/theme/index'),
-        name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
-      }
-    ]
-  },
-
-  {
-    path: '/clipboard',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/clipboard/index'),
-        name: 'ClipboardDemo',
-        meta: { title: 'Clipboard', icon: 'clipboard' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'External Link', icon: 'link' }
       }
     ]
   },

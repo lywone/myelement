@@ -8,17 +8,23 @@
       <span>数据分析平台</span>
     </div>
     <el-menu
-      style="display: inline-block; flex: 1"
+      style="display: inline-block; flex: 1; border: 0"
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
     >
-      <el-menu-item index="1" @click="handleSelect('/mydashboard')"
+      <el-menu-item index="/mydashboard" @click="handleSelect('/mydashboard')"
         >仪表盘</el-menu-item
       >
-      <el-menu-item index="2" @click="handleSelect('/dashboard')">工作台</el-menu-item>
-      <el-menu-item index="3" @click="handleSelect('/datasource')">数据源</el-menu-item>
-      <el-menu-item index="4" @click="handleSelect('/library')">模板库</el-menu-item>
+      <el-menu-item index="work" @click="handleSelect('/dashboard')"
+        >工作台</el-menu-item
+      >
+      <el-menu-item index="/datasource" @click="handleSelect('/datasource')"
+        >数据源</el-menu-item
+      >
+      <el-menu-item index="/library" @click="handleSelect('/library')"
+        >模板库</el-menu-item
+      >
     </el-menu>
 
     <div class="right-menu">
@@ -90,12 +96,27 @@ export default {
   },
   data() {
     return {
-      activeIndex: "2",
+      activeIndex: "work",
       logo: "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png",
     };
   },
   computed: {
     ...mapGetters(["sidebar", "avatar", "device"]),
+  },
+  watch: {
+    "$route.path": {
+      handler(val) {
+        // if (!this.activeIndex) {
+        const type = this.$route.meta?.type;
+
+        if (type) {
+          this.activeIndex = type;
+        } else {
+          this.activeIndex = this.$route.path;
+        }
+        // }
+      },
+    },
   },
   methods: {
     toggleSideBar() {
@@ -105,7 +126,7 @@ export default {
       await this.$store.dispatch("user/logout");
       this.$router.push(`/login?redirect=${this.$route.fullPath}`);
     },
-    handleSelect( path) {
+    handleSelect(path) {
       this.$router.push(path);
     },
   },
@@ -120,6 +141,7 @@ export default {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   display: flex;
+  border-bottom: solid 1px #e6e6e6;
 
   .hamburger-container {
     line-height: 46px;
